@@ -1,4 +1,4 @@
-package com.heteroDB.model;
+package com.heteroDB.metaDataStore.model;
 
 public class QueryData {
 	
