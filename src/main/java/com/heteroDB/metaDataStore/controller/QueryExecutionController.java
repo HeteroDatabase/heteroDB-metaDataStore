@@ -19,7 +19,7 @@ public class QueryExecutionController {
 	MysqlServiceClient mysqlServiceClient;
 	
 	@RequestMapping(value = "/executeQuery", method = RequestMethod.POST)
-	public ResponseEntity<Void> ExecuteQuery(@RequestBody QueryData queryData) {
+	public ResponseEntity<Boolean> executeQuery(@RequestBody QueryData queryData) {
 		DatabaseServers dbServers = queryData.getDatabaseType();
 		switch(dbServers) {
 		case mysql:
@@ -27,7 +27,7 @@ public class QueryExecutionController {
 		}
 		
 		System.out.println(queryData);
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(true,HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/test", method = RequestMethod.POST)
