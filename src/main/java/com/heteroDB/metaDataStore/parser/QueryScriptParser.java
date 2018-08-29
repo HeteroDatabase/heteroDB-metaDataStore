@@ -1,17 +1,23 @@
 package com.heteroDB.metaDataStore.parser;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public abstract class QueryScriptParser {
 
 	public List<String> parseScript(String queryScript) {
-		String[] queries=queryScript.split(";");
-		for(int i=0;i<queries.length;i++) {
-			parseAndVerifyEachQuery(queries[i]);
+		if(queryScript.indexOf(';')!=-1) {
+			String[] queries=queryScript.split(";");
+			for(int i=0;i<queries.length;i++) {
+				parseAndVerifyQuery(queries[i]);
+			}
+			return Arrays.asList(queries);
 		}
-		return Arrays.asList(queries);
+		List<String> parsedQueries = new ArrayList<>();
+		parsedQueries.add(queryScript);
+		return parsedQueries;
 	}
 	
-	public abstract Boolean parseAndVerifyEachQuery(String query);
+	public abstract Boolean parseAndVerifyQuery(String query);
 }

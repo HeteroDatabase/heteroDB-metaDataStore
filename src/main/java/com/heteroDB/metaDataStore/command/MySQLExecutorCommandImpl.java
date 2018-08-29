@@ -1,21 +1,22 @@
-package com.heteroDB.metaDataStore.service.impl;
+package com.heteroDB.metaDataStore.command;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import com.heteroDB.metaDataStore.httpClient.MySQLHttpClient;
 import com.heteroDB.metaDataStore.parser.QueryScriptParser;
-import com.heteroDB.metaDataStore.service.MySQLExecutorService;
 
-@Service
-public class MySQLExecutorServiceImpl implements MySQLExecutorService {
+@Component("mySQLExecutorCommandImpl")
+public class MySQLExecutorCommandImpl implements DatabaseExecutorCommand {
 
 	@Autowired
 	MySQLHttpClient mySQLHttpClient;
 	
 	@Autowired
+	@Qualifier("mySQLQueryScriptParser")
 	QueryScriptParser mySQLQueryScriptParser;
 	
 	@Override

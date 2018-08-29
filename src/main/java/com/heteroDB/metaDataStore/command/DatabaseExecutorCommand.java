@@ -1,6 +1,6 @@
-package com.heteroDB.metaDataStore.service;
+package com.heteroDB.metaDataStore.command;
 
-public interface MySQLExecutorService {
+public interface DatabaseExecutorCommand {
 
 	/**
 	 * processes the query script on mysql database
