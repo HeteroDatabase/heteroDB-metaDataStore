@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.heteroDB.metaDataStore.httpClient.MySQLHttpClient;
+import com.heteroDB.metaDataStore.model.ScriptExecutionResponse;
 import com.heteroDB.metaDataStore.parser.QueryScriptParser;
 
 @Component("mySQLExecutorCommandImpl")
@@ -20,13 +21,18 @@ public class MySQLExecutorCommandImpl implements DatabaseExecutorCommand {
 	QueryScriptParser mySQLQueryScriptParser;
 	
 	@Override
-	public Boolean processQueryScript(Long userId, String queryScript) {
+	public ScriptExecutionResponse processQueryScript(Long userId, String queryScript) {
+		
+		//parses the query script
+		//breaks it into single queries
+		//checks syntactical error
 		List<String> queriesList = mySQLQueryScriptParser.parseScript(queryScript);
 		
 		for(String query : queriesList) {
+			
 			mySQLHttpClient.executeMysqlQuery(query);
 		}
-		return true;
+		return null;
 	}
 
 }

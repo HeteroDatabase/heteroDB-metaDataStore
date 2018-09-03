@@ -1,6 +1,7 @@
 package com.heteroDB.metaDataStore.service;
 
 import com.heteroDB.metaDataStore.model.QueryData;
+import com.heteroDB.metaDataStore.model.ScriptExecutionResponse;
 
 public interface QueryScriptService {
 	
@@ -9,8 +10,8 @@ public interface QueryScriptService {
 	 * @param userId
 	 * @param queryData
 	 * 
-	 * @return true if executed successfully otherwise false
+	 * @return response object 
 	 */
-	public Boolean processQueryScript(Long userId , QueryData queryData);
+	public ScriptExecutionResponse processQueryScript(Long userId , QueryData queryData);
 
 }

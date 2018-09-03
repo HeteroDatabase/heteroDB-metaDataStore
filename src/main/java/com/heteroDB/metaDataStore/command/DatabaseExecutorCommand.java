@@ -1,13 +1,15 @@
 package com.heteroDB.metaDataStore.command;
 
+import com.heteroDB.metaDataStore.model.ScriptExecutionResponse;
+
 public interface DatabaseExecutorCommand {
 
 	/**
-	 * processes the query script on mysql database
+	 * processes the query script on database
 	 * Also, stores the relevant meta data for user
 	 * @param userId
 	 * @param queryScript
-	 * @return true if executed successfully otherwise false
+	 * @return response object
 	 */
-	Boolean processQueryScript(Long userId,String queryScript);
+	public ScriptExecutionResponse processQueryScript(Long userId,String queryScript);
 }

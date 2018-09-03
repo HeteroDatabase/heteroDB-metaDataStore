@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.heteroDB.metaDataStore.httpClient.MySQLHttpClient;
 import com.heteroDB.metaDataStore.model.QueryData;
+import com.heteroDB.metaDataStore.model.ScriptExecutionResponse;
 import com.heteroDB.metaDataStore.service.QueryScriptService;
 
 @RestController
@@ -24,12 +25,10 @@ public class QueryScriptController {
 	MySQLHttpClient mysqlServiceClient;
 	
 	@RequestMapping(value = "/execute", method = RequestMethod.POST)
-	public ResponseEntity<Boolean> executeScript(@RequestParam("userId") Long userId, 
+	public ResponseEntity<ScriptExecutionResponse> executeScript(@RequestParam("userId") Long userId, 
 			@RequestBody QueryData queryData) {
-		
-		Boolean isExecuted = queryScriptService.processQueryScript(userId, queryData);
-		
-		return new ResponseEntity<>(isExecuted,HttpStatus.OK);
+		ScriptExecutionResponse scriptExecutionResponse = queryScriptService.processQueryScript(userId, queryData);
+		return new ResponseEntity<>(scriptExecutionResponse,HttpStatus.OK);
 	}
 
 }
